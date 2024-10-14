@@ -1,0 +1,723 @@
+<html class="grszhlzd idc0_343">
+
+<head>
+  <meta name="description" content="New Layer of Abstraction, Not the End of Software Engineering" />
+  <meta name="twitter:card" content="An optimistic view on how Software Engineering will progress in the upcoming years" />
+  <meta name="twitter:site" content="@adamcohenhillel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+  rel="canonical"
+    href="http://adamcohenhillel.com/essays/110230725.introducing-masked-ai-an-open-source.html"
+  />
+  <style>
+    body {
+      line-height: 1.4;
+      font-size: 16px;
+      padding: 0 10px;
+      margin: 50px auto;
+      max-width: 650px;
+    }
+
+    #maincontent {
+      max-width: 42em;
+      margin: 15 auto;
+    }
+  </style>
+
+  <title>New Layer of Abstraction, Not the End of Software Engineering | Adam Cohen Hillel</title>
+</head>
+
+<body>
+  <div id="maincontent" style="margin-top: 70px">
+    <h1>New Layer of Abstraction, Not the End of Software Engineering</h1>
+    <p style="color: gray; font-weight: normal;">An optimistic view on how Software Engineering will progress in the upcoming years</p>
+    <p style="color: gray; font-weight: normal;">By Adam Cohen Hillel, originally published on <a href="https://essays.adamcohenhillel.com/p/new-layer-of-abstraction-not-the">Substack, Feb 17, 2023</a></p>
+    <hr>
+    
+    
+<p>
+    In the last few months, I had a couple of discussions with different software
+    engineers about the future of our profession. As an AI-enthusiastic, I was
+    trying to be the optimistic voice between the pessimistic/ignorant views
+    surrounding that topic. In this article, I will share my perspective on how I
+    see our field progress, my arguments for it, and where I think you should
+    focus as a software engineer in this changing world.
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/b7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png"
+              width="402"
+              height="402"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/b7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":1024,"width":1024,"resizeWidth":402,"bytes":1664847,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":false,"topImage":true,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb7487ff7-68ed-4f7b-9e40-db47e521ad99_1024x1024.png 1456w
+              "
+              sizes="100vw"
+              fetchpriority="high"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <h4>TL;DR</h4>
+  <ol>
+    <li>
+      <p>
+        AI will not replace but enhance software developers to be more productive
+        and to create products that
+        <a href="https://aigrant.org/">weren’t possible in the past.</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Boost in productivity occurred many times in the past - at higher rates
+        than we currently see with AI tools—E.g. with high-level programming
+        languages, the shift to the cloud, open source culture, etc.
+      </p>
+    </li>
+    <li>
+      <p>
+        The barrier to writing code will be reduced, and more people will enter
+        the arena.
+      </p>
+    </li>
+    <li>
+      <p>
+        All of the above is a positive trend as it will boost the industry, not
+        the other way around. It will lead to a new era of growth, products and
+        opportunities for all.
+      </p>
+    </li>
+    <li>
+      <p>
+        To be part of it, you do need to be active, keep updating your skills, and
+        embrace new tools.
+      </p>
+    </li>
+  </ol>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/amasad/status/1595557790063304704","full_text":"I don&apos;t think people understand the monumental changes coming to software this decade. Quick thread:","username":"amasad","name":"Amjad Masad ⠕","date":"Wed Nov 23 23:19:55 +0000 2022","photos":[],"quoted_tweet":{},"retweet_count":3172,"like_count":19441,"expanded_url":{},"video_url":null,"belowTheFold":false}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/amasad/status/1595557790063304704"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/amasad.jpg"
+          alt="Twitter avatar for @amasad"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Amjad Masad ⠕ </span
+          ><span class="tweet-author-handle">@amasad</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        I don't think people understand the monumental changes coming to software
+        this decade. Quick thread:
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/amasad/status/1595557790063304704"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">11:19 PM ∙ Nov 23, 2022</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/amasad/status/1595557790063304704/likes"
+            class="likes"
+            ><span class="like-count">19,441</span>Likes</span
+          ><span
+            href="https://twitter.com/amasad/status/1595557790063304704/retweets"
+            class="retweets"
+            ><span class="rt-count">3,172</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <h4>Let’s GO:</h4>
+  <p>
+    It is crucial to begin by acknowledging that the recent boom of AI tools, such
+    as Copilot by Github, Codex by OpenAI, and ChatGPT by OpenAI - have shown us
+    very clearly, that they are capable of enhancing software engineers. Not the
+    <strong>potential</strong> to, but the
+    <strong>already-here</strong> usefulness. I'm using ChatGPT daily, and it
+    almost entirely replaced my Stackoverflow-usage. I write code for around ~8
+    hours a day, including weekends (for work and personal projects), and I’m
+    saving about ~5 hours a week thanks to it (<a
+      href="https://twitter.com/adamcohenhillel/status/1621999359259721729"
+      >based on an experiment I did</a
+    >).
+  </p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/karpathy/status/1608895189078380544","full_text":"Nice read on reverse engineering of GitHub Copilot 🪄. Copilot has dramatically accelerated my coding, it&apos;s hard to imagine going back to \"manual coding\". Still learning to use it but it already writes ~80% of my code, ~80% accuracy. I don&apos;t even really code, I prompt. &amp;amp; edit. ","username":"karpathy","name":"Andrej Karpathy","date":"Fri Dec 30 18:37:59 +0000 2022","photos":[],"quoted_tweet":{"full_text":"A while back I&apos;d done some shallow reverse engineering of Copilot\n\nNow I&apos;ve done a deeper dive into Copilot&apos;s internals, built a tool to explore its code, and wrote a blog answering specific questions and pointing out some tidbits.\n\nhttps://t.co/nX5ilC4ou5\n\nDo read, might be fun! https://t.co/DgPl3fjo97","username":"parth007_96","name":"Parth Thakkar"},"retweet_count":547,"like_count":4340,"expanded_url":{},"video_url":null,"belowTheFold":false}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/karpathy/status/1608895189078380544"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/karpathy.jpg"
+          alt="Twitter avatar for @karpathy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Andrej Karpathy </span
+          ><span class="tweet-author-handle">@karpathy</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        Nice read on reverse engineering of GitHub Copilot 🪄. Copilot has
+        dramatically accelerated my coding, it's hard to imagine going back to
+        "manual coding". Still learning to use it but it already writes ~80% of my
+        code, ~80% accuracy. I don't even really code, I prompt. &amp; edit.
+      </div>
+      <div class="quote-tweet">
+        <div class="quote-tweet-header">
+          <img
+            class="quote-tweet-header-avatar"
+            src="https://substackcdn.com/image/twitter_name/w_40/parth007_96.jpg"
+            alt="Twitter avatar for @parth007_96"
+          />
+          <div class="quote-tweet-header-text">
+            <span class="quote-tweet-name">Parth Thakkar </span
+            ><span class="quote-tweet-username">@parth007_96</span>
+          </div>
+        </div>
+        A while back I'd done some shallow reverse engineering of Copilot Now I've
+        done a deeper dive into Copilot's internals, built a tool to explore its
+        code, and wrote a blog answering specific questions and pointing out some
+        tidbits. https://t.co/nX5ilC4ou5 Do read, might be fun!
+        https://t.co/DgPl3fjo97
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/karpathy/status/1608895189078380544"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">6:37 PM ∙ Dec 30, 2022</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/karpathy/status/1608895189078380544/likes"
+            class="likes"
+            ><span class="like-count">4,340</span>Likes</span
+          ><span
+            href="https://twitter.com/karpathy/status/1608895189078380544/retweets"
+            class="retweets"
+            ><span class="rt-count">547</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <p>
+    However, the jump from where those tools are currently at, to the
+    utopian/dystopian world of software engineers being unemployed is
+    far-reaching.
+  </p>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/Grady_Booch/status/1595676929054879744","full_text":"<span class=\"tweet-fake-link\">@amasad</span> None of this will come true in your lifetime.","username":"Grady_Booch","name":"Grady Booch","date":"Thu Nov 24 07:13:20 +0000 2022","photos":[],"quoted_tweet":{},"retweet_count":33,"like_count":1324,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/Grady_Booch/status/1595676929054879744"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/Grady_Booch.jpg"
+          alt="Twitter avatar for @Grady_Booch"
+          loading="lazy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Grady Booch </span
+          ><span class="tweet-author-handle">@Grady_Booch</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        <span class="tweet-fake-link">@amasad</span> None of this will come true
+        in your lifetime.
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/Grady_Booch/status/1595676929054879744"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">7:13 AM ∙ Nov 24, 2022</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/Grady_Booch/status/1595676929054879744/likes"
+            class="likes"
+            ><span class="like-count">1,324</span>Likes</span
+          ><span
+            href="https://twitter.com/Grady_Booch/status/1595676929054879744/retweets"
+            class="retweets"
+            ><span class="rt-count">33</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <p>
+    For this argument, I’d refer to the much-beloved <em>Pareto principle </em>-
+    or 80/20 Rule - which states that 80% of the deliverable from a project is
+    achieved with 20% of the effort and that the remaining 20% will require 80% of
+    the effort. In our scenario, this can be thought of in two ways:
+  </p>
+  <ol>
+    <li>
+      <p>
+        The remaining “20%” for Copilot/ChatGPT to automate software engineers
+        entirely will be the difficult 80% effort. Which means we still have a
+        long way to go. This will be the reasoning, debugging, and the “connecting
+        the dots” of different parts of the codes in a codebase (and less about
+        the specific known algorithms, tests, etc).
+      </p>
+    </li>
+    <li>
+      <p>
+        Copilot automates the 80% “copy-paste” job of engineering, where we, the
+        engineers, are left with closing up the remaining 20% - Yay! (More about
+        it later)
+      </p>
+    </li>
+  </ol>
+  <p>
+    Another way of looking at these tools is in the context of previous
+    technological advances in our field. For example, Github argues that engineers
+    using their Copilot are
+    <a
+      href="https://github.blog/2022-09-07-research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/#:~:text=The%20group%20that%20used%20GitHub,didn't%20use%20GitHub%20Copilot."
+      >55% more productive/fast</a
+    >
+    in completing a specific set of tasks (note that this might not be fair
+    research as the tasks might’ve been part of the model’s training dataset).
+    This sounds like a crazy increase in productivity (and it is), but also not
+    something we haven’t seen before. In the 1960s, with the introduction of
+    High-Level programming languages, we saw
+    <a href="http://page.mi.fu-berlin.de/prechelt/Biblio//jccpprtTR.pdf"
+      >more or less the same boost in productivit</a
+    >y of engineers writing code in High-level languages compared to low-level
+    languages.
+  </p>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/adamcohenhillel/status/1625287323721031680","full_text":"Did you know that in the 60s, high-level programming languages were commonly called \"autocode\"*?\n\nMakes you think differently about \"AI will replace all engineers\" trend on Twitter.\n\nWriting an article about it this week.\n\n*source: \"High-level programming language\", Wikipedia","username":"adamcohenhillel","name":"Adam Cohen Hillel","date":"Tue Feb 14 00:14:29 +0000 2023","photos":[],"quoted_tweet":{},"retweet_count":0,"like_count":5,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/adamcohenhillel/status/1625287323721031680"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/adamcohenhillel.jpg"
+          alt="Twitter avatar for @adamcohenhillel"
+          loading="lazy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Adam Cohen Hillel </span
+          ><span class="tweet-author-handle">@adamcohenhillel</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        Did you know that in the 60s, high-level programming languages were
+        commonly called "autocode"*? Makes you think differently about "AI will
+        replace all engineers" trend on Twitter. Writing an article about it this
+        week. *source: "High-level programming language", Wikipedia
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/adamcohenhillel/status/1625287323721031680"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">12:14 AM ∙ Feb 14, 2023</span>
+      </div></a
+    >
+  </div>
+  <p>
+    A different concern I’ve heard is that this will make more people go to
+    software, as it will be more accessible, making it much more difficult to find
+    a job, make a living, etc. More people will indeed do software, as it will
+    (and already is) reduce the barrier to becoming a software engineer. But it
+    also opens up a new frontier of potential products, opportunities, and
+    economic growth (As mentioned in my previous articles
+    <a
+      href="https://adamcohenhillel.substack.com/p/how-generative-ai-will-change-the"
+      >here</a
+    >
+    and
+    <a
+      href="https://adamcohenhillel.substack.com/p/the-era-of-ai-native-products-in"
+      >here</a
+    >). “<a
+      href="https://www.diamandis.com/blog/embrace-the-future-summit-2023?utm_campaign=Tech%20Blog&amp;utm_content=238557306&amp;utm_medium=social&amp;utm_source=twitter&amp;hss_channel=tw-14710129"
+      >We are at a *very* unique moment—on the cusp of a revolution that will
+      usher in multiple trillion-dollar companies and industries”.</a
+    >
+    Just like when the PC, the Internet, the mobile, and the cloud were introduced
+    and were available for more people, it didn’t make people absolute, but it
+    created so many new opportunities in the form of
+    <a
+      href="https://www.spiceworks.com/tech/cloud/articles/cloud-computing-careers-job-roles/"
+      >roles</a
+    >, companies, etc.
+  </p>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/amasad/status/1595557791753961472","full_text":"Last century making software got progressively easier going from machine code to assembly to higher-level and then scripting languages. The last major productivity boost in software was OSS. Each of those steps was 10-100x boost but then it stopped...","username":"amasad","name":"Amjad Masad ⠕","date":"Wed Nov 23 23:19:56 +0000 2022","photos":[],"quoted_tweet":{},"retweet_count":46,"like_count":1476,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/amasad/status/1595557791753961472"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/amasad.jpg"
+          alt="Twitter avatar for @amasad"
+          loading="lazy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Amjad Masad ⠕ </span
+          ><span class="tweet-author-handle">@amasad</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        Last century making software got progressively easier going from machine
+        code to assembly to higher-level and then scripting languages. The last
+        major productivity boost in software was OSS. Each of those steps was
+        10-100x boost but then it stopped...
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/amasad/status/1595557791753961472"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">11:19 PM ∙ Nov 23, 2022</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/amasad/status/1595557791753961472/likes"
+            class="likes"
+            ><span class="like-count">1,476</span>Likes</span
+          ><span
+            href="https://twitter.com/amasad/status/1595557791753961472/retweets"
+            class="retweets"
+            ><span class="rt-count">46</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <p>
+    It is important to note that we won't be doing what we currently do in 5
+    years, which is okay. This is what this industry has been doing from day 1 -
+    creating <strong>more and more layers of abstractions</strong> to enable us to
+    <strong>focus on what matters - building stuff</strong>. For example, you
+    don’t need to write your own authentication system nowadays. Thanks to
+    companies like Google (Firebase), AWS (Cognito), etc., you can do that in 10
+    lines of code. Same with the cloud, you don’t need to care much for the
+    scaling of your app, but AWS/Azure/GCP give you many different tools that
+    enable you to scale stuff for millions of users effortlessly. In the past (~10
+    years ago), you needed to run your own server on your own hardware - you know
+    how difficult it was? Thanks for not having to do that - we’ve experienced the
+    boom of the 2010s with the mobile revolution. AI is another layer of
+    abstraction that will enable you to focus on the business itself, building
+    products faster and better.
+  </p>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/sama/status/1484950633237004290","full_text":"Using artists as an example, when anyone can create amazing art, there will be incredible upside for humanity, but downside for most individual artists.\n\n(On the other hand, totally new kinds of art will be possible, and the skill that will matter will be imagination.)","username":"sama","name":"Sam Altman","date":"Sat Jan 22 18:06:34 +0000 2022","photos":[],"quoted_tweet":{},"retweet_count":13,"like_count":206,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/sama/status/1484950633237004290"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/sama.jpg"
+          alt="Twitter avatar for @sama"
+          loading="lazy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Sam Altman </span
+          ><span class="tweet-author-handle">@sama</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        Using artists as an example, when anyone can create amazing art, there
+        will be incredible upside for humanity, but downside for most individual
+        artists. (On the other hand, totally new kinds of art will be possible,
+        and the skill that will matter will be imagination.)
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/sama/status/1484950633237004290"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">6:06 PM ∙ Jan 22, 2022</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/sama/status/1484950633237004290/likes"
+            class="likes"
+            ><span class="like-count">206</span>Likes</span
+          ><span
+            href="https://twitter.com/sama/status/1484950633237004290/retweets"
+            class="retweets"
+            ><span class="rt-count">13</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <p>
+    Sam (OpenAI CEO) is a bit dystopian for the individual, but remember, he is
+    the merchant trying to make his commodities worth more. The way we will write
+    software in the future is somewhere in the middle. We will all have an AI
+    assistant, some sort of ChatGPT, where it will be back-and-forth of English to
+    code to English. We will be guiding it, and it will be guiding us back to the
+    code. We will need to understand the code it generates and tweak it for the
+    specific app. We will need to understand, at least conceptually, different
+    algorithms and underlying computer science thinking (at a much higher level
+    than today’s CS students, though) to be able to read and approve code (and
+    mainly tests), and to “get under the bonnet” when needed. We will write more
+    application code, connecting different interfaces (like using a 3rd party
+    library or an API today) to form the required business logic. Understanding
+    the code will be needed to do this reliably and at scale. You, as an engineer,
+    will be able to do more stuff by supervising and guiding the tool and jumping
+    in where needed. Think about yourself as a lead/senior engineer working with 5
+    junior engineers - this will be more like that than “give me an app that does
+    X Y X” and that is it.
+  </p>
+  <h4>
+    <strong><br />So, what should you do today?</strong>
+  </h4>
+  <p>
+    All of the optimism above does not come just about, and you will need to be
+    ready to be flexible, to learn, and to adjust. I am far from being an expert,
+    but here are my recommendations on how to best face the changing world:
+  </p>
+  <p>
+    <strong>Start using these tools.</strong> I was surprised to hear how many
+    engineers read about Copilot but have yet actually tried to leverage it. This
+    will <strong>already</strong> boost your productivity and will enable you to
+    do more. Not using those tools is like trying to implement your authentication
+    system or run on your own server home at for production - you can, but why
+    would you? Focus on the important stuff.
+  </p>
+  <p>
+    <strong>Be up-to-date with what is going on</strong>. That means reading
+    articles (like this and many others). Follow and engage with relevant people
+    on Twitter (from big names like the ones I embedded in this article to smaller
+    ones like myself and many others). Being part of these discussions will help
+    you form your perspective on the subject and to be in a better place in the
+    changing world.
+  </p>
+  <p>
+    <strong>Learn &amp; Build - Don’t be stuck with your current stack</strong>
+    (whoop a rhyme!), keep learning new technologies that are released, learn
+    about ML/AI/LLMs, build small projects and share them online, and be involved
+    in the Open source community.
+  </p>
+  <ul>
+    <li>
+      <p>
+        For software developers without a background in machine learning, I will
+        recommend watching Andrej's playlist here:
+        https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+      </p>
+    </li>
+    <li>
+      <p>
+        Reach out to me here or on Twitter and I’d be happy to share more
+        resources and topics to learn!
+      </p>
+    </li>
+  </ul>
+  <div
+    data-component-name="Twitter2ToDOM"
+    class="tweet"
+    data-attrs='{"url":"https://twitter.com/karpathy/status/1617979122625712128?lang=en-GB","full_text":"The hottest new programming language is English","username":"karpathy","name":"Andrej Karpathy","date":"Tue Jan 24 20:14:18 +0000 2023","photos":[],"quoted_tweet":{},"retweet_count":2082,"like_count":18038,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+  >
+    <a
+      class="tweet-link-top"
+      href="https://twitter.com/karpathy/status/1617979122625712128?lang=en-GB"
+      target="_blank"
+      ><div class="tweet-header">
+        <img
+          class="tweet-header-avatar"
+          src="https://substackcdn.com/image/twitter_name/w_96/karpathy.jpg"
+          alt="Twitter avatar for @karpathy"
+          loading="lazy"
+        />
+        <div class="tweet-header-text">
+          <span class="tweet-author-name">Andrej Karpathy </span
+          ><span class="tweet-author-handle">@karpathy</span>
+        </div>
+      </div>
+      <div class="tweet-text">
+        The hottest new programming language is English
+      </div></a
+    ><a
+      class="tweet-link-bottom"
+      href="https://twitter.com/karpathy/status/1617979122625712128?lang=en-GB"
+      target="_blank"
+      ><div class="tweet-footer">
+        <span class="tweet-date">8:14 PM ∙ Jan 24, 2023</span>
+        <hr />
+        <div class="tweet-ufi">
+          <span
+            href="https://twitter.com/karpathy/status/1617979122625712128?lang=en-GB/likes"
+            class="likes"
+            ><span class="like-count">18,038</span>Likes</span
+          ><span
+            href="https://twitter.com/karpathy/status/1617979122625712128?lang=en-GB/retweets"
+            class="retweets"
+            ><span class="rt-count">2,082</span>Retweets</span
+          >
+        </div>
+      </div></a
+    >
+  </div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <p>
+    Thank you for reading. If you liked my content, don’t hesitate to reach out.
+    I’d love to talk with more people and discuss everything: tech, philosophy,
+    AI, ideas, Lex Fridman, startups, software, science, whatever!<br /><br /><strong
+      >Twitter:</strong
+    >
+    https://twitter.com/adamcohenhillel<br /><strong>LinkedIn:</strong>
+    https://www.linkedin.com/in/adamcohenhillel<br /><strong>Email:</strong>
+    adamcohenhillel@gmail.com<br /><br />Adam.
+  </p>
+  <p></p>
+  <p>Sources:</p>
+  <ol>
+    <li><p>http://page.mi.fu-berlin.de/prechelt/Biblio//jccpprtTR.pdf</p></li>
+    <li><p>https://arxiv.org/pdf/1409.0252.pdf</p></li>
+    <li>
+      <p>
+        https://en.wikipedia.org/wiki/High-level_programming_language#cite_note-kleith-2
+      </p>
+    </li>
+  </ol>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  </div>
+</body>
+
+</html>

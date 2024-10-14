@@ -1,0 +1,786 @@
+<html class="grszhlzd idc0_343">
+
+<head>
+  <meta name="description" content="Interactive Q&A Incident Response with Cado Platform + GPT-3" />
+  <meta name="twitter:card" content="How GPT-3, with Cado Platform, will transform the way security analysts do investigations." />
+  <meta name="twitter:site" content="@adamcohenhillel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+  rel="canonical"
+    href="http://adamcohenhillel.com/essays/100437081.interactive-q-and-a-incident-response.html"
+  />
+  <style>
+    body {
+      line-height: 1.4;
+      font-size: 16px;
+      padding: 0 10px;
+      margin: 50px auto;
+      max-width: 650px;
+    }
+
+    #maincontent {
+      max-width: 42em;
+      margin: 15 auto;
+    }
+  </style>
+
+  <title>Interactive Q&A Incident Response with Cado Platform + GPT-3 | Adam Cohen Hillel</title>
+</head>
+
+<body>
+  <div id="maincontent" style="margin-top: 70px">
+    <h1>Interactive Q&A Incident Response with Cado Platform + GPT-3</h1>
+    <p style="color: gray; font-weight: normal;">How GPT-3, with Cado Platform, will transform the way security analysts do investigations.</p>
+    <p style="color: gray; font-weight: normal;">By Adam Cohen Hillel, originally published on <a href="https://essays.adamcohenhillel.com/p/interactive-q-and-a-incident-response">Substack, Feb 02, 2023</a></p>
+    <hr>
+    
+
+<p>
+    Two months ago, when we
+    <a
+      href="https://www.cadosecurity.com/experimenting-with-chatgpt-for-incident-response/"
+      >first started experimenting</a
+    >
+    with GPT-3 at <a href="https://cadosecurity.com/">Cado</a> to explore the
+    opportunities of leveraging AI for Incident Response, we focused on
+    summarization, which was a good experiment, as it showed us the promising
+    benefits of integrating the technology. Since - we developed this integration
+    further, and today we are introducing a new, game-changer beta feature: an
+    interactive Q&amp;A interface to streamline the analysis of forensic evidence.
+    It is powered by GPT-3 and semantic analysis to further enhance the incident
+    analysis process within the Cado platform.
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/ea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png"
+              width="1456"
+              height="862"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/ea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":862,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":false,"topImage":true,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea8f0240-c03b-48b5-bec6-b24a401b86fa_1600x947.png 1456w
+              "
+              sizes="100vw"
+              fetchpriority="high"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+      <figcaption class="image-caption">An example Q&amp;A</figcaption>
+    </figure>
+  </div>
+  <p>
+    Below we run through how the feature works, some interesting examples, and
+    some caveats.
+  </p>
+  <p></p>
+  <h4><strong>Automating Incident Response</strong></h4>
+  <p>
+    For my readers who are not familiar with Cado, we are building a platform that
+    empowers security teams with a <em>smarter </em>and <em>faster</em> way to
+    respond to incidents in the cloud. To this end, we recently released Cado’s
+    <a href="https://www.cadosecurity.com/introducing-automated-investigations/"
+      >Automated Investigation</a
+    >
+    feature. Automated Investigations help security teams seamlessly identify the
+    root cause of an incident by automatically analyzing&nbsp;a robust dataset
+    captured across cloud-provider logs, disk, memory and more:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/dd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png"
+              width="1456"
+              height="795"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/dd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":795,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":false,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd6e70f9-81a4-4752-b3c6-7a77ec53d52a_1600x874.png 1456w
+              "
+              sizes="100vw"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    Now, to further augment the investigation process, we’ve added an optional,
+    experimental GPT-3 capability to Automated Investigations. This Automated
+    Investigation first filters down <strong>millions</strong> of events and files
+    from a system into a smaller set of key events that are relevant to the
+    investigation. Then we leverage GPT-3 and semantic analysis to add the ability
+    to ask interactive questions of captured evidence and receive a rapid
+    response.&nbsp;<br />
+  </p>
+  <h4>
+    <strong>An Example:</strong>
+    <strong>Interacting with GPT-3 within the Cado Platform</strong>
+  </h4>
+  <p>
+    As an example, we imported Cado’s
+    <a
+      href="https://offers.cadosecurity.com/webinar-cado-response-community-edition"
+      >Capture-the-Flag exercise</a
+    >, which recreates an incident detected by AWS GuardDuty. The attack impacts
+    an AWS EC2 instance that accessed a known BitCoin mining address. The CTF data
+    includes the AWS GuardDuty logs plus a disk image of the instance in question.
+  </p>
+  <p>
+    Now, let’s see what conclusions GPT-3 can help us draw from the imported CTF
+    data. Below are a few screenshots showcasing how we interacted with GPT-3
+    within the Cado platform and its output. As you can see, GPT-3 helped us
+    quickly understand how the system was compromised and other critical details:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png"
+              width="1456"
+              height="791"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":791,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F156e8e8c-5b61-4069-8200-fb5c2a8bc0e7_1600x869.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    While GPT-3 provides a good overview, we still have the ability to dive into
+    the raw data collected by Cado to validate these conclusions:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/d0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png"
+              width="1456"
+              height="283"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/d0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":283,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0af5f74-9e50-452f-9b97-82d5c08cebd3_1600x311.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div></div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    We recommend that users do this as GPT-3 is not always accurate in its output.
+    For example, when we asked what IP addresses were used in the attack, GPT-3
+    confidently listed the IP addresses from the investigation. But not all are
+    related to the <strong>attack itself</strong>:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png"
+              width="1456"
+              height="537"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":537,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e82b4e1-b26e-4acd-bf5f-584c6cfe5daf_1600x590.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    In the event GPT-3 doesn’t provide a lot of context, you can ask for
+    additional details:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png"
+              width="1456"
+              height="832"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":832,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F375289e6-2adc-483e-911e-5f487158bbf1_1600x914.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    We also asked GPT-3 for recommendations throughout to help us progress the
+    investigation:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/dcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png"
+              width="1456"
+              height="684"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/dcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":684,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcef4ca1-2cc1-4fbe-b38e-0a570aeffb5a_1600x752.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    In addition, GPT-3 helped us identify potential ways the attacker could spread
+    and compromise more systems:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png"
+              width="1456"
+              height="462"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":462,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F964a2962-c63b-4a65-b4c5-5573a523a313_1600x508.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    Lastly, we asked GPT-3 a question that is not actually related to the specific
+    data of the investigation to see how it would react.
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png"
+              width="1456"
+              height="512"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":512,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a6e0834-a91a-4374-a10b-7a5c68e13fe6_1538x541.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>Success!</p>
+  <p></p>
+  <h4><strong>Under the Hood&nbsp;</strong></h4>
+  <p>
+    Some of you might know that GPT-3 has a limit on the input of about 3000
+    words. So how have we indexed the investigation to perform this interactive
+    Q&amp;A?
+  </p>
+  <p>
+    We used <a href="https://github.com/jerryjliu/gpt_index">GPTIndex</a> to split
+    the Automated Investigation data into chunks called “nodes”. Each node is
+    assigned a semantic vector. The semantic vector interprets a word’s meaning to
+    explain features such as word similarity.
+  </p>
+  <p>
+    Then when we ask a question GPTIndex will fetch the most relevant nodes and
+    pass it to GPT-3 as a context, plus the question itself:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png"
+              width="1456"
+              height="1156"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":1156,"width":1456,"resizeWidth":null,"bytes":null,"alt":"Image from GPT Index","title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt="Image from GPT Index"
+              title="Image from GPT Index"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8d139cc9-605a-413a-b499-1f999c116f24_1600x1270.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+      <figcaption class="image-caption">
+        Image from
+        <a
+          href="https://gpt-index.readthedocs.io/en/latest/guides/index_guide.html"
+          >GPT Index</a
+        >
+      </figcaption>
+    </figure>
+  </div>
+  <p></p>
+  <h4><strong>Future Work</strong></h4>
+  <p>
+    This feature is currently behind a feature flag in beta mode as we continue to
+    improve it and get feedback. We are putting a number of controls in place
+    before we make this more widely available:
+  </p>
+  <ul>
+    <li>
+      <p>
+        You need to supply your own GPT-3 integration key - any API integration
+        means sending data out.
+      </p>
+    </li>
+    <li>
+      <p>
+        We are working on redactions and showing the data that will be sent out to
+        users
+      </p>
+    </li>
+  </ul>
+  <p>
+    While GPT-3 has proven mostly accurate in our testing - it is
+    <strong>critical</strong> to always verify based on the raw data that Cado
+    presents.
+  </p>
+  <p>
+    As for the feature itself, a back-and-forth chat-like interface will be an
+    interesting area to evolve!&nbsp;
+  </p>
+  <p></p>
+  <h4><strong>Conclusion</strong></h4>
+  <p>
+    AI provides a huge amount of promise for transforming Incident Response, but
+    it needs to be used carefully, since itzOne of Cado’s biggest strengths is the
+    depth of data that is collected and analyzed. The level of detail provides
+    analysts with greater context when it comes to investigating cloud threats. By
+    integrating with GPT-3, an analyst's ability to quickly get to the bottom of
+    what happened is further enhanced. Analysts can jump into a new incident
+    investigation and get a high-level overview immediately.&nbsp;
+  </p>
+  <p>
+    Interested in learning more? You can contact Cado or deploy a 14-day free
+    trial
+    <a href="https://www.cadosecurity.com/free-investigation/">here</a
+    >.<br /><br /><br />This blog post was originally published on the Cado
+    Security blog here:
+    https://www.cadosecurity.com/cado-gpt-3-interactive-incident-response/
+  </p>
+  <div><hr /></div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <p>
+    Thank you for reading. If you liked my content, don’t hesitate to reach out.
+    I’d love to talk with more people and discuss everything: tech, philosophy,
+    AI, ideas, Lex Fridman, startups, software, science, whatever!<br /><br /><strong
+      >Twitter:</strong
+    >
+    https://twitter.com/adamcohenhillel<br /><strong>LinkedIn:</strong>
+    https://www.linkedin.com/in/adamcohenhillel<br /><strong>Email:</strong>
+    adamcohenhillel@gmail.com<br /><br />Adam.
+  </p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+    
+  </div>
+</body>
+
+</html>

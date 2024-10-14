@@ -1,0 +1,536 @@
+<html class="grszhlzd idc0_343">
+
+<head>
+  <meta name="description" content="Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely" />
+  <meta name="twitter:card" content="Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely" />
+  <meta name="twitter:site" content="@adamcohenhillel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+  rel="canonical"
+    href="http://adamcohenhillel.com/essays/110230725.introducing-masked-ai-an-open-source.html"
+  />
+  <style>
+    body {
+      line-height: 1.4;
+      font-size: 16px;
+      padding: 0 10px;
+      margin: 50px auto;
+      max-width: 650px;
+    }
+
+    #maincontent {
+      max-width: 42em;
+      margin: 15 auto;
+    }
+  </style>
+
+  <title>Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely | Adam Cohen Hillel</title>
+</head>
+
+<body>
+  <div id="maincontent" style="margin-top: 70px">
+    <h1>Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely</h1>
+    <p style="color: gray; font-weight: normal;">By Adam Cohen Hillel, originally published on <a href="https://essays.adamcohenhillel.com/p/introducing-masked-ai-an-open-source">Substack, Mar 30, 2023</a></p>
+    <hr>
+    
+    
+<p>
+    In one of my
+    <a
+      href="https://adamcohenhillel.substack.com/p/interactive-q-and-a-incident-response"
+      >previous article</a
+    >s about LLMs (Large Language Models), I introduced the “Interactive Incident
+    Response” feature we’ve built within the Cado Platform. Leveraging OpenAI’s
+    GPT-3 Completion and Ada embedding models for an interactive Q&amp;A interface
+    to streamline the analysis of forensic evidence:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png"
+              width="1456"
+              height="610"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":610,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":false,"topImage":true,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c1ffd1d-64af-41ff-b691-1b9e5eed5bfd_1600x670.png 1456w
+              "
+              sizes="100vw"
+              fetchpriority="high"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    In the conclusion of that post, I noted a few issues with using such a feature
+    in production environments. In particular, sharing highly-sensitive data with
+    a 3rd party API is a big security &amp; privacy concern (see more about how
+    <a
+      href="https://www.darkreading.com/risk/employees-feeding-sensitive-business-data-chatgpt-raising-security-fears"
+      >Employees Are Feeding Sensitive Biz Data to ChatGPT, Raising Security
+      Fears</a
+    >)<br /><br />Since then, OpenAI has changed their
+    <a href="https://openai.com/policies/api-data-usage-policies"
+      >API data usage policy</a
+    >, announcing that they will not use data submitted by customers via their API
+    to train or improve their models. Even still, they retain any data sent
+    through the API (for abuse and misuse monitoring purposes) for a maximum of 30
+    days. This, therefore, is still a big concern for any app or feature built
+    using their API (See, for example, how
+    <a href="https://www.bbc.co.uk/news/technology-65047304"
+      >ChatGPT bug leaked users' conversation histories</a
+    >).
+  </p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <p></p>
+  <h4>
+    <strong
+      >Introducing
+      <a href="https://github.com/cado-security/masked-ai">Masked-AI</a></strong
+    >
+  </h4>
+  <p>
+    Masked-AI is a Python SDK and CLI wrappers that enable the usage of public LLM
+    APIs such as OpenAI/GPT4 more securely. It does this by
+  </p>
+  <ol>
+    <li>
+      <p>
+        Replacing (“masking”) sensitive data (e-mail addresses, persons names,
+        credit cards numbers, etc) with a placeholder in its place.
+      </p>
+    </li>
+    <li>
+      <p>
+        Storing a lookup table for the placeholders&nbsp; -&gt; data, to be used
+        later to reconstruct the response
+      </p>
+    </li>
+    <li><p>Sending the request to the API, with the masked, “safe” data</p></li>
+    <li>
+      <p>Replacing/reconstructing the sensitive data back into the output</p>
+    </li>
+  </ol>
+  <p>
+    The result is that you get the same output from the API, without having to
+    send the sensitive data. Simple but powerful, here is a diagram:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/c1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png"
+              width="1456"
+              height="447"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/c1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":447,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1e96962-46b6-4a79-9e81-fdd2f5026d19_1600x491.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    Here is a simple example of how the CLI tool works with the basic ‘echo’
+    command:
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png"
+              width="1202"
+              height="424"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":424,"width":1202,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23016c10-d1e5-4108-8bc5-90c77cc7f55a_1202x424.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    You can deploy Masked-AI straight from
+    <a href="https://pypi.org/project/masked-ai/">pip</a> (“pip3 install
+    masked-ai”) or from the
+    <a href="https://github.com/cado-security/masked-ai">GitHub</a> repo:
+    <a href="https://github.com/cado-security/masked-ai"
+      >https://github.com/cado-security/masked-ai</a
+    >. It can be used as both a python library or over the CLI (binary available
+    in the GitHub repo release).
+  </p>
+  <p>
+    Using
+    <a href="https://platform.openai.com/docs/api-reference/completions/create"
+      >OpenAI Completion API</a
+    >, with Masked-AI CLI tool:
+  </p>
+  <pre><code>./masker --debug --prompt "Hello, my name is Adam, say my name" curl https://api.openai.com/v1/completions&nbsp; -H&nbsp; "Content-Type: application/json" -H "Authorization: Bearer &lt;OPENAI_API_KEY&gt;"&nbsp; -d&nbsp; '{"model": "text-davinci-003", "prompt": "{prompt_placeholder}"}'</code></pre>
+  <p>Notes:</p>
+  <ul>
+    <li>
+      <p>
+        Don’t forget to change `&lt;OPENAI_API_KEY&gt;` to your own OpenAI key
+      </p>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <p>
+        The string `{prompt_placeholder}` in the curl command is where your safe,
+        masked `--prompt` will go.
+      </p>
+    </li>
+  </ul>
+  <p>And the output:</p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/c26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png"
+              width="1456"
+              height="662"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/c26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":662,"width":1456,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc26c0f66-5bb0-4646-bd47-c2ca3bef9691_1600x728.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p><strong>So, what is happening here?</strong></p>
+  <ol>
+    <li>
+      <p>
+        If we look at the output, the prompt that the user wanted to send to the
+        API was “Hello, my name is Adam, say my name”, but what is actually being
+        sent (marked with blue) is `Hello, my name is &lt;NamesMask_1&gt;, say my
+        name`, Masked-AI replaced the name “Adam” with a placeholder.
+      </p>
+    </li>
+    <li>
+      <p>
+        Then if we look at the raw return value from the cURL command (the
+        important part is marked in red), we can see that OpenAI returned the
+        following completion: `Hello, &lt;NamesMask_1&gt;!"`&nbsp;
+      </p>
+    </li>
+    <li>
+      <p>
+        Lastly, the reconstruction stage (marked purple), where Masked-AI takes
+        the output, and replaces the placeholders back with the real data (using
+        the lookup table), which in this case, `Hello, Adam!`
+      </p>
+    </li>
+  </ol>
+  <p>
+    That’s a simple example showing how we can still use LLMs, and leverage their
+    great power, without sending out sensitive information. Here is the same
+    example, but with Python:
+  </p>
+  <pre><code>import os
+  import openai
+  from masked_ai import Masker
+  
+  # Load your API key from an environment variable or secret management service
+  openai.api_key = os.getenv("OPENAI_API_KEY")
+  data = "My name is Adam and my IP address is 8.8.8.8. Now, write a one line poem:"
+  masker = Masker(data)
+  print('Masked: ', masker.masked_data)
+  response = openai.Completion.create(
+      model="text-davinci-003",
+      prompt=masker.masked_data,
+      temperature=0,
+      max_tokens=1000,
+  )
+  generated_text = response.choices[0].text
+  print('Raw response: ', response)
+  unmasked = masker.unmask_data(generated_text)
+  print('Result:', unmasked)</code></pre>
+  <p></p>
+  <h4><strong>How and What Masked-AI Masks:</strong></h4>
+  <p>
+    Masked-AI currently masks: persons names, credit card numbers, email
+    addresses, phone numbers, web links and IP addresses, using either Regex or
+    the <a href="https://www.nltk.org/">NLTK</a> library. We also made it very
+    easy to contribute to the code and add more masks by adding just 4 lines of
+    code, check out
+    <a href="https://github.com/cado-security/masked-ai#how-to-contribute"
+      >How to Contribute</a
+    >.
+  </p>
+  <p></p>
+  <h4><strong>Other approaches</strong></h4>
+  <p>
+    In an ideal world, we’d be able to run these models ourselves on our own
+    compute, expensive as it might be. This might come available in the future,
+    thanks to Microsoft's (Azure) partnership with OpenAI. But until this happens,
+    there are a few open-source alternative models, such as
+    <a href="https://github.com/facebookresearch/llama">Meta’s Llama</a>, which
+    with certain configurations, can even
+    <a href="https://twitter.com/thiteanish/status/1635678053853536256"
+      >run on a mobile device</a
+    >. However, this is not as production-ready as OpenAI APIs, the community is
+    not as large, and more applications and repositories have been built for GPT
+    models.
+  </p>
+  <p></p>
+  <h4><strong>Conclusion</strong></h4>
+  <p>
+    Large Language Models are going to revolutionize many fields, and this is
+    exciting. It is here to enhance our productivity, and in the case of incident
+    response, it allows security teams to focus on the more important (and fun)
+    parts of investigation and response. However, as always, there are potential
+    issues that may arise, such as data privacy, that should be taken very
+    seriously. <br /><br />You can get masked-ai at
+    <a href="https://github.com/cado-security/masked-ai"
+      >https://github.com/cado-security/masked-ai</a
+    >
+    (Open sourced python package, and the compiled CLI version). And if you’re
+    interested in checking out Cado Secuirty's latest integration with ChatGPT to
+    further expedite incident response in the cloud, you can deploy the
+    <a href="https://www.cadosecurity.com/free-investigation/">free trial here</a
+    >.<br />
+  </p>
+  <p>
+    <br />This blog post was originally published on the Cado Security blog
+    here:<br /><a
+      href="https://www.cadosecurity.com/introducing-masked-ai-an-open-source-library-that-enables-the-usage-of-llm-apis-more-securely/"
+      >https://www.cadosecurity.com/introducing-masked-ai-an-open-source-library-that-enables-the-usage-of-llm-apis-more-securely/</a
+    >
+  </p>
+  <div><hr /></div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <p>
+    Thank you for reading. If you liked my content, don’t hesitate to reach out.
+    I’d love to talk with more people and discuss everything: tech, philosophy,
+    AI, ideas, Lex Fridman, startups, software, science, whatever!<br /><br /><strong
+      >Twitter:</strong
+    >
+    https://twitter.com/adamcohenhillel<br /><strong>LinkedIn:</strong>
+    https://www.linkedin.com/in/adamcohenhillel<br /><strong>Email:</strong>
+    adamcohenhillel@gmail.com<br /><br />Adam.
+  </p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  </div>
+</body>
+
+</html>
+

@@ -1,0 +1,615 @@
+<html class="grszhlzd idc0_343">
+
+<head>
+  <meta name="description" content="Experiments with Autonomous GPT Agents" />
+  <meta name="twitter:card" content="And the future of collaborating with AI" />
+  <meta name="twitter:site" content="@adamcohenhillel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+  rel="canonical"
+    href="http://adamcohenhillel.com/essays/114179012.experiments-with-autonomous-gpt-agents.html"
+  />
+  <style>
+    body {
+      line-height: 1.4;
+      font-size: 16px;
+      padding: 0 10px;
+      margin: 50px auto;
+      max-width: 650px;
+    }
+
+    #maincontent {
+      max-width: 42em;
+      margin: 15 auto;
+    }
+  </style>
+
+  <title>Experiments with Autonomous GPT Agents | Adam Cohen Hillel</title>
+</head>
+
+<body>
+  <div id="maincontent" style="margin-top: 70px">
+    <h1>Experiments with Autonomous GPT Agents</h1>
+    <p style="color: gray; font-weight: normal;">And the future of collaborating with AI</p>
+    <p style="color: gray; font-weight: normal;">By Adam Cohen Hillel, originally published on <a href="https://essays.adamcohenhillel.com/p/experiments-with-autonomous-gpt-agents">Substack, Apr 27, 2023</a></p>
+    <hr>
+    
+
+<p>
+    In the last few weeks, I’ve been fascinated by the
+    <a href="https://twitter.com/yoheinakajima/status/1640934493489070080"
+      >BabyAGI concept</a
+    >
+    <a href="https://twitter.com/yoheinakajima">Yohei</a> introduced on Twitter.
+    It is a simple yet so powerful implementation of a “Task-driven Autonomous
+    Agent” using nothing but OpenAI API and ~100 lines of Python code.
+    Essentially, it is a code that runs infinitely and, using OpenAI API, creates
+    and executes its own tasks toward an objective defined by the user. It can
+    also leverage tools like Google Search, Zapier, etc., to accomplish the tasks.
+    As just one example,
+    <a href="https://twitter.com/yoheinakajima/status/1641912179854299137"
+      >the following agent</a
+    >
+    was asked to write a business plan. It then made a to-do list, a marketing
+    plan, etc.
+  </p>
+  <p>
+    Today I will walk you through my experiments with different Agents I created
+    (coding, entertainment) and share my view on the future of this technology.
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/c19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png"
+              width="1084"
+              height="1084"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/c19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":1084,"width":1084,"resizeWidth":null,"bytes":1164461,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":false,"topImage":true,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc19b2e02-6499-45cf-afdc-df46327c3c48_1084x1084.png 1456w
+              "
+              sizes="100vw"
+              fetchpriority="high"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <div><hr /></div>
+  <p>
+    Playing around with the original BabyAGI version, I quickly realised its great
+    potential. The reason is that recently I noticed that the way I use ChatGPT
+    (the web interface) is not the same way I used to use the “old” internet
+    (querying questions/problems and getting answers), but rather - I use ChatGPT
+    as cognitive offload. I provide it with tasks (mostly coding) that I know I
+    can solve myself, but I rather spend my time doing other things. When I saw
+    BabyAGI - I saw how it could enhance my ChatGPT flow by 10x and more!
+  </p>
+  <p>So I took a step ahead and started implementing different agents:</p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <h4>My Experiments</h4>
+  <div><hr /></div>
+  <h5>
+    <strong>Experiment #1: TDD (Test Driven Development) Coding Agent </strong>(<a
+      href="https://twitter.com/adamcohenhillel/status/1644836492294905856"
+      >Twitter thread</a
+    >).
+  </h5>
+  <p>
+    <strong>TLDR:</strong> Coding Agent that follows the Test Driven Development
+    (TDD) methodology! You write the tests - and the agent runs in a loop until it
+    creates the feature properly!
+  </p>
+  <p>
+    To integrate autonomous agents into the workforce, I realised, we’d need to be
+    able to measure their progress, recalculate their direction, and flag when
+    they finished/need help. Essentially, having a framework for it to work
+    within, like setting expectations with a new junior dev. This was when TDD
+    came to mind! In the case of coding agents, it can act as the agent’s
+    framework.
+  </p>
+  <blockquote>
+    <p>
+      💡 To those of my readers unfamiliar with the TDD term - it is a software
+      development practice that focuses on creating test cases before developing
+      the actual code.
+    </p>
+  </blockquote>
+  <div
+    id="youtube2-33yd79KBzeY"
+    class="youtube-wrap"
+    data-attrs='{"videoId":"33yd79KBzeY","startTime":null,"endTime":null}'
+    data-component-name="Youtube2ToDOM"
+  >
+    <div class="youtube-inner">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/33yd79KBzeY?rel=0&amp;autoplay=0&amp;showinfo=0&amp;enablejsapi=0"
+        frameborder="0"
+        loading="lazy"
+        gesture="media"
+        allow="autoplay; fullscreen"
+        allowautoplay="true"
+        allowfullscreen="true"
+        width="728"
+        height="409"
+      ></iframe>
+    </div>
+  </div>
+  <p><strong>So what do we see here?</strong></p>
+  <ol>
+    <li>
+      <p>
+        We’ve got an incomplete application code (in this case, a simple FastAPI
+        app) and two tests. One of the tests fails (as the application is
+        incomplete).
+      </p>
+    </li>
+    <li>
+      <p>
+        We then run the agent - it can’t read the tests but just run them and get
+        the output.
+      </p>
+    </li>
+    <li>
+      <p>
+        On the first try, it created the missing "echo" endpoint with a POST
+        method - which failed, as the test defined it as a GET.
+      </p>
+    </li>
+    <li>
+      <p>
+        It then took the failures and converted the code to use GET instead -
+        which failed again but with a different error (we tried to make it fail on
+        purpose, so in the test, we defined the expected key name of the return
+        value as "message1" and not "message")
+      </p>
+    </li>
+    <li>
+      <p>
+        It, therefore, took the failures (again) and adjusted the code - this time
+        making the return value "message1" - which worked, and the tests passed.
+      </p>
+    </li>
+  </ol>
+  <p>
+    The idea here was to show how TDD is super useful to steer it in a specific,
+    measurable direction - while keeping it somewhat autonomous.<br />As a
+    software engineer, to leverage agents in my workflow, I have to have a way to
+    steer the agent to my desired end goal, and whatever it does to get there - is
+    up to it.
+  </p>
+  <p>Have we finally found a good reason to follow the TDD practice? ;)</p>
+  <div><hr /></div>
+  <h5>
+    <strong
+      >Experiment #2: Dynamic Chatbot that creates its own inner world (<a
+        href="https://twitter.com/adamcohenhillel/status/1645560223334293504"
+        >Twitter thread</a
+      >).</strong
+    >
+  </h5>
+  <p>
+    In a completely different direction, I wanted to explore the potential
+    entertainment side of autonomous agents. And yes, I recently re-watched
+    Westworld, which affected my thinking in this experiment :)
+  </p>
+  <p>
+    While watching the show, now with the knowledge of LLMs, I realised that what
+    attracts people to come to the park (take all the crazy inhuman things aside)
+    are the dynamic loops the “hosts”/”agents” live in. Unlike today’s interactive
+    AI products, Westworld ones have their own lives going on, even when visitors
+    aren't around. It's not just about them waiting for people to interact with
+    them.
+  </p>
+  <p><strong>Can I use LLMs to do something similar?</strong></p>
+  <p>
+    So I created “Dreamer” - an autonomous <strong>chatbot. </strong>You provide
+    it with a given personality, and it then runs in a simulated environment and
+    can do whatever: exploring, chasing interests, widening its knowledge, playing
+    games. You can chat with it whenever, but it doesn't sit and wait for your
+    input! It does its own thing :) dynamic chatbot with evolving inner world!
+  </p>
+  <div
+    id="youtube2--zyvfAY4Ao4"
+    class="youtube-wrap"
+    data-attrs='{"videoId":"-zyvfAY4Ao4","startTime":null,"endTime":null}'
+    data-component-name="Youtube2ToDOM"
+  >
+    <div class="youtube-inner">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/-zyvfAY4Ao4?rel=0&amp;autoplay=0&amp;showinfo=0&amp;enablejsapi=0"
+        frameborder="0"
+        loading="lazy"
+        gesture="media"
+        allow="autoplay; fullscreen"
+        allowautoplay="true"
+        allowfullscreen="true"
+        width="728"
+        height="409"
+      ></iframe>
+    </div>
+  </div>
+  <p><strong>So what do we see here?</strong></p>
+  <ol>
+    <li>
+      <p>
+        The agent is given the personality. “Like to play board games, explore new
+        ideas and read science fiction.”
+      </p>
+    </li>
+    <li>
+      <p>
+        It then starts by exploring the internet for good science fiction books to
+        read, which comes up with a few results (i.e. Dune by Frank Herbert).
+      </p>
+    </li>
+    <li><p>It chooses to save this to its memory for later.</p></li>
+    <li><p>It does the same for board games^</p></li>
+    <li><p>The user then asks it, “Hey what you doing? :)”</p></li>
+    <li><p>It tells the user about what it was up to</p></li>
+    <li><p>It continues to create a new type of boarding game</p></li>
+    <li><p>etc</p></li>
+  </ol>
+  <p>
+    In other runs, it also simulated a Catan game, reading a book and writing its
+    opinion, etc. This Agent is a bit simpler than the coding one, as the
+    accuracy/precision of its output is not as critical (see the “Takeaways”
+    section below for more details), but this is also why it is a super
+    interesting use case - it can get wilder!
+  </p>
+  <p>
+    Check this out (<a
+      href="https://twitter.com/radio_poodle/status/1651512018015502336?s=46&amp;t=Mx_IgAGDZgJY40iOyL3uKg"
+      >link</a
+    >)→
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png"
+              width="1092"
+              height="1262"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":1262,"width":1092,"resizeWidth":null,"bytes":1462887,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F424fd2bc-bd7c-44b5-8d68-6db32259ad9b_1092x1262.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <div><hr /></div>
+  <h5>
+    <strong
+      >Experiment #3: LLMitlessAPI - one single endpoint is all you need! (<a
+        href="https://twitter.com/adamcohenhillel/status/1647006066092261377"
+        >Twitter Thread</a
+      >)</strong
+    >
+  </h5>
+  <p>
+    This experiment, for some reason, was the most difficult to convey to the
+    readers - so I will try my best here.
+  </p>
+  <p>
+    Most (arguably all) backend API services are a combination of these 3
+    operations:
+  </p>
+  <ol>
+    <li>
+      <p><strong>Store</strong></p>
+    </li>
+    <li>
+      <p><strong>Fetch</strong></p>
+    </li>
+    <li>
+      <p><strong>Execute</strong></p>
+    </li>
+  </ol>
+  <p>
+    You can combine them in infinite combinations and create any API out there. So
+    what if I place an agent that knows how to do these 3 things behind one API
+    endpoint? We can then ask it to act as if it was a different endpoint every
+    time!
+  </p>
+  <p>
+    Define the service you want the agent to act as + the data to act upon<strong
+      >. T</strong
+    >hat is it. limitless API! (Or should I say, LLMitlessAPI? ;<strong>)</strong>
+  </p>
+  <div
+    id="youtube2-5pEYSuExzk0"
+    class="youtube-wrap"
+    data-attrs='{"videoId":"5pEYSuExzk0","startTime":null,"endTime":null}'
+    data-component-name="Youtube2ToDOM"
+  >
+    <div class="youtube-inner">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/5pEYSuExzk0?rel=0&amp;autoplay=0&amp;showinfo=0&amp;enablejsapi=0"
+        frameborder="0"
+        loading="lazy"
+        gesture="media"
+        allow="autoplay; fullscreen"
+        allowautoplay="true"
+        allowfullscreen="true"
+        width="728"
+        height="409"
+      ></iframe>
+    </div>
+  </div>
+  <p><strong>So what do we see here?</strong></p>
+  <ol>
+    <li><p>Nothing in the backend/API defines a “chat” service;</p></li>
+    <li>
+      <p>
+        The client sends a message to the API asking it to act as a chat API, +
+        the message send
+      </p>
+    </li>
+    <li>
+      <p>
+        The agent then decides to store it for later, for whoever will ask for it
+      </p>
+    </li>
+    <li>
+      <p>
+        Another client asks the API to act as a Chat API too, but asking for new
+        messages
+      </p>
+    </li>
+    <li>
+      <p>
+        The agent fetches the latest message from its memory, sent by the other
+        client, and sends it back
+      </p>
+    </li>
+    <li>
+      <p>
+        BAM - a working chat (with many bugs and very slow) - without creating the
+        chat functionality!
+      </p>
+    </li>
+  </ol>
+  <p>
+    I don’t see much “production” value facing customers for this use case. Still,
+    it can help software engineering teams to iterate faster by creating a working
+    PoC of products in a fraction of the time, getting feedback quicker and
+    building what works, and throwing out what isn’t. Founders can also use it to
+    create a demo and raise money, etc.
+  </p>
+  <div><hr /></div>
+  <h4>Takeaways - Agents in Production?</h4>
+  <p>
+    An autonomous agent is a very interesting concept worth more experiments.
+    Still, I think they are not yet production-ready. For most of the use cases,
+    we’d need to develop a strong framework for the agents to work within before
+    we can gain value from them (a simple proof-of-concept of a framework was the
+    TDD agent, which has the potential to be further improved for production
+    coding agents).
+  </p>
+  <p>
+    The diagram below describes this well, but to deploy an agent to production
+    use cases, we either need a good framework to measure the agent progress and
+    output, or the use case doesn’t requires too much precision.
+  </p>
+  <div class="captioned-image-container">
+    <figure>
+      <a
+        class="image-link image2 is-viewable-imag"
+        target="_blank"
+        href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png"
+        data-component-name="Image2ToDOM"
+        ><div class="image2-inset">
+          <picture
+            ><source
+              type="image/webp"
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png 1456w
+              "
+              sizes="100vw" />
+            <img
+              src="https://substack-post-media.s3.amazonaws.com/public/images/f1ef33db-1193-4140-885f-413150a101c9_1242x798.png"
+              width="1242"
+              height="798"
+              data-attrs='{"src":"https://substack-post-media.s3.amazonaws.com/public/images/f1ef33db-1193-4140-885f-413150a101c9_1242x798.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":798,"width":1242,"resizeWidth":null,"bytes":110423,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+              class="sizing-normal"
+              alt=""
+              srcset="
+                https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png   424w,
+                https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png   848w,
+                https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png 1272w,
+                https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff1ef33db-1193-4140-885f-413150a101c9_1242x798.png 1456w
+              "
+              sizes="100vw"
+              loading="lazy"
+          /></picture>
+          <div class="image-link-expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-maximize2"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" x2="14" y1="3" y2="10"></line>
+              <line x1="3" x2="10" y1="21" y2="14"></line>
+            </svg>
+          </div></div
+      ></a>
+    </figure>
+  </div>
+  <p>
+    Some use cases are more “frameworkable” by nature, like coding, where you can
+    “verify” correctness more systematically by writing tests or running the code
+    and seeing what it does. Whereas use cases like therapy are more open-ended,
+    and the results are not [easily] measurable (even in human-to-human
+    interaction, it is difficult to measure the progress/impact of a session, not
+    to mention long-term effects).
+  </p>
+  <p>
+    I believe gaming (and entertainment in general) will be the first
+    production-use-cases in the upcoming months (due to low “precision-critical”,
+    even if difficult to verify), followed by coding agents (due to high
+    “ease-of-verification”).<br /><br />Exciting times!
+  </p>
+  <div
+    class="subscription-widget-wrap-editor"
+    data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+    data-component-name="SubscribeWidgetToDOM"
+  >
+    <div class="subscription-widget show-subscribe">
+      <div class="preamble">
+        <p class="cta-caption">
+          Thanks for reading Adam’s Notes! Subscribe for free to receive new posts
+          and support my work.
+        </p>
+      </div>
+      <form class="subscription-widget-subscribe">
+        <input
+          type="email"
+          class="email-input"
+          name="email"
+          placeholder="Type your email…"
+          tabindex="-1"
+        /><input type="submit" class="button primary" value="Subscribe" />
+        <div class="fake-input-wrapper">
+          <div class="fake-input"></div>
+          <div class="fake-button"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <div><hr /></div>
+  <p>
+    Thank you for reading. If you liked my content, don’t hesitate to reach out.
+    I’d love to talk with more people and discuss everything: tech, philosophy,
+    AI, ideas, Lex Fridman, startups, software, science, whatever!<br /><br /><strong
+      >Twitter:</strong
+    >
+    https://twitter.com/adamcohenhillel<br /><strong>LinkedIn:</strong>
+    https://www.linkedin.com/in/adamcohenhillel<br /><strong>Email:</strong>
+    adamcohenhillel@gmail.com<br /><br />Adam.
+  </p>
+  
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,790 @@
+<html class="grszhlzd idc0_343">
+  <head>
+    <meta
+      name="description"
+      content="How Generative-AI Will Change the Gaming Industry, A Working Example"
+    />
+    <meta
+      name="twitter:card"
+      content="Showcase: AIwaska, AI-Native Shooting VR game"
+    />
+    <meta name="twitter:site" content="@adamcohenhillel" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="canonical"
+      href="http://adamcohenhillel.com/essays/90245599.how-generative-ai-will-change-the.html"
+    />
+    <style>
+      body {
+        line-height: 1.4;
+        font-size: 16px;
+        padding: 0 10px;
+        margin: 50px auto;
+        max-width: 650px;
+      }
+
+      #maincontent {
+        max-width: 42em;
+        margin: 15 auto;
+      }
+    </style>
+
+    <title>
+      How Generative-AI Will Change the Gaming Industry, A Working Example |
+      Adam Cohen Hillel
+    </title>
+  </head>
+
+  <body>
+    <div id="maincontent" style="margin-top: 70px">
+      <h1>
+        How Generative-AI Will Change the Gaming Industry, A Working Example
+      </h1>
+      <p style="color: gray; font-weight: normal">
+        Showcase: AIwaska, AI-Native Shooting VR game
+      </p>
+      <p style="color: gray; font-weight: normal">
+        By Adam Cohen Hillel, originally published on
+        <a
+          href="https://essays.adamcohenhillel.com/p/how-generative-ai-will-change-the"
+          >Substack, Dec 17, 2022</a
+        >
+      </p>
+      <hr />
+
+      <p>
+        In my
+        <a
+          href="https://adamcohenhillel.substack.com/p/the-era-of-ai-native-products-in"
+          >previous article</a
+        >, I explored the emergence of AI-Native companies and the potential of
+        large generative AI models, such as GPT-3, DALL-E, and Stable Diffusion,
+        to create products and experiences that were previously unimaginable.
+        Today, I want to focus on how these models can revolutionize the
+        <strong>gaming industry</strong>.
+      </p>
+      <p>
+        During a 3-day weekend hackathon, my friend Yam and I created "AIwaska,"
+        a VR shooting game that allows users to customize the game experience
+        with a single prompt. Our goal was to demonstrate the potential of
+        personalized, immersive entertainment using these AI models.
+      </p>
+      <div
+        class="subscription-widget-wrap-editor"
+        data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+        data-component-name="SubscribeWidgetToDOM"
+      >
+        <div class="subscription-widget show-subscribe">
+          <div class="preamble">
+            <p class="cta-caption">
+              Thanks for reading Adam’s Notes! Subscribe for free to receive new
+              posts and support my work.
+            </p>
+          </div>
+          <form class="subscription-widget-subscribe">
+            <input
+              type="email"
+              class="email-input"
+              name="email"
+              placeholder="Type your email…"
+              tabindex="-1"
+            /><input type="submit" class="button primary" value="Subscribe" />
+            <div class="fake-input-wrapper">
+              <div class="fake-input"></div>
+              <div class="fake-button"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <p>TLDR; This can change the gaming industry in a few ways:</p>
+      <ol>
+        <li>
+          <p>
+            Providing personalized, custom experiences that can be generated
+            quickly and efficiently from a user prompt.
+          </p>
+        </li>
+        <li>
+          <p>
+            Reducing the time and resources needed to develop games, enabling
+            faster content creation and lowering the barrier for game developers
+            to produce high-quality games.
+          </p>
+        </li>
+        <li>
+          <p>
+            Making open-world games truly open-world, offering endless
+            possibilities for exploration and gameplay.
+          </p>
+        </li>
+      </ol>
+      <h4>
+        <strong><br />Some Context</strong>
+      </h4>
+      <p>
+        The cost and effort involved in creating modern video games cannot be
+        overstated. For example, the highly successful game Grand Theft Auto V
+        cost around <strong>$150 million</strong> to produce and took
+        <strong>over five years</strong> to develop, involving a team of
+        <strong>250 employees</strong>. Even though it is the extreme, other
+        games are still catching up, like the popular open-world game Skyrim,
+        which cost <strong>$100 million</strong> to develop. These examples
+        illustrate the significant resources required to create immersive and
+        engaging gaming experiences.<br />
+      </p>
+      <h4>
+        <strong
+          >AIwask - "Middle Ages town hall, with a psychedelic teleport door
+          that opens up to the future"</strong
+        >
+      </h4>
+      <p>
+        The video shows an example of a VR world created by AIwaska with the
+        user prompt
+        <strong
+          >"Middle Ages town hall, with a psychedelic teleport door that opens
+          up to the future."</strong
+        >
+      </p>
+      <div
+        id="vimeo-780165133"
+        class="vimeo-wrap"
+        data-attrs='{"videoId":"780165133","videoKey":"","belowTheFold":true}'
+        data-component-name="VimeoToDOM"
+      >
+        <div class="vimeo-inner">
+          <iframe
+            src="https://player.vimeo.com/video/780165133?autoplay=0"
+            frameborder="0"
+            gesture="media"
+            allow="autoplay; fullscreen"
+            allowautoplay="true"
+            allowfullscreen="true"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+      <h4>
+        <br />Building the Game (It is all open-source, link to GitHub at the
+        bottom):
+      </h4>
+      <ol>
+        <li>
+          <p>
+            The user gives a prompt of a world he wants to play in (e.g. “Middle
+            Ages town hall, with a teleport..”)
+          </p>
+        </li>
+        <li>
+          <p>
+            We take the prompt and generate more information about it using
+            GPT-3, like “List objects you’d see in the world “middle ages town
+            hall….”
+          </p>
+        </li>
+        <li>
+          <p>
+            We take all the information and using DALL-E, we generate the first
+            “frame” - an Equirectangular/Panorama view of the prompt.
+          </p>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/cd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png"
+                      width="422"
+                      height="422"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/cd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":1024,"width":1024,"resizeWidth":422,"bytes":2003791,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd9e75a3-94ac-4969-b04f-0e5bbf492c22_1024x1024.png 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+        </li>
+        <li>
+          <p>
+            Then, using inpainting capability, we iterate the initial image a
+            couple more times to create a full 360 image we can use in a VR.
+          </p>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/a7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png"
+                      width="591"
+                      height="587"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/a7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":587,"width":591,"resizeWidth":null,"bytes":454642,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa7113b67-c39e-410d-ac1f-44442a19ec8b_591x587.png 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/ad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png"
+                      width="1456"
+                      height="728"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/ad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":728,"width":1456,"resizeWidth":null,"bytes":2979111,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fad4ef811-c62a-4199-9638-c4cece4a8569_2048x1024.png 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+          <p></p>
+        </li>
+        <li>
+          <p>
+            We then iterate over the entire image in random places and try to
+            place objects and settings we’ve got from step 2 (in this example,
+            “psychedelic” and “teleport”).
+          </p>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/c43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png"
+                      width="1456"
+                      height="728"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/c43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":728,"width":1456,"resizeWidth":null,"bytes":2837631,"alt":null,"title":null,"type":"image/png","href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43371b5-3137-4f0d-985a-a1d51bbe40c0_2048x1024.png 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+        </li>
+        <li>
+          <p>
+            Adding the gameplay: Once we have a world and many frames from that
+            world, we need to build the gameplay itself, what the user can do in
+            that VR world. In our case - it was shooting! We used
+            <a href="https://aframe.io/">A-Frame</a>, a web framework for
+            building virtual reality experiences, and added the 360-layout we
+            generated in the previous steps.
+          </p>
+        </li>
+        <li>
+          <p>
+            Then we added the appearing objects in the grid and added the option
+            to “shoot” them.
+          </p>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif"
+                      width="600"
+                      height="282"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":282,"width":600,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_lossy/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F4c676554-78a2-4c24-b67f-a38be4f28909_600x282.gif 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+        </li>
+        <li>
+          <p>Lastly, we iterate over the frames we’ve created:</p>
+          <div class="captioned-image-container">
+            <figure>
+              <a
+                class="image-link image2 is-viewable-imag"
+                target="_blank"
+                href="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin"
+                data-component-name="Image2ToDOM"
+                ><div class="image2-inset">
+                  <picture
+                    ><source
+                      type="image/webp"
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin 1456w
+                      "
+                      sizes="100vw" />
+                    <img
+                      src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/a9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin"
+                      width="600"
+                      height="282"
+                      data-attrs='{"src":"https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/a9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin","srcNoWatermark":null,"fullscreen":null,"imageSize":null,"height":282,"width":600,"resizeWidth":null,"bytes":null,"alt":null,"title":null,"type":null,"href":null,"belowTheFold":true,"topImage":false,"internalRedirect":null,"isProcessing":false}'
+                      class="sizing-normal"
+                      alt=""
+                      srcset="
+                        https://substackcdn.com/image/fetch/w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin   424w,
+                        https://substackcdn.com/image/fetch/w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin   848w,
+                        https://substackcdn.com/image/fetch/w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin 1272w,
+                        https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9e35325-1851-4e7d-b91e-5d357d9a81c8_600x282.bin 1456w
+                      "
+                      sizes="100vw"
+                      loading="lazy"
+                  /></picture>
+                  <div class="image-link-expand">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-maximize2"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" x2="14" y1="3" y2="10"></line>
+                      <line x1="3" x2="10" y1="21" y2="14"></line>
+                    </svg>
+                  </div></div
+              ></a>
+            </figure>
+          </div>
+        </li>
+      </ol>
+      <p><br />Ka-Bam!</p>
+      <div
+        data-component-name="Twitter2ToDOM"
+        class="tweet"
+        data-attrs='{"url":"https://twitter.com/adamcohenhillel/status/1602303872701186051?s=20&amp;t=MU193AfQM44SPmSf_woJ9w","full_text":"I actually didn’t notice it myself, but a friend pointed out that AIwaska also created two futuristic creatures/ aliens next to the teleport! 🫢  ","username":"adamcohenhillel","name":"Adam Cohen Hillel","date":"Mon Dec 12 14:06:27 +0000 2022","photos":[{"img_url":"https://pbs.substack.com/media/FjyG4REWYAAYgmH.jpg","link_url":"https://t.co/BY6I8TgQVG","alt_text":null}],"quoted_tweet":{"full_text":"AIwaska - A simple shooting game generated by a customized user prompt \"Middle Ages town hall, with a psychedelic teleport door that opens up to the future\"\n\nMade it 3 days! It was a fun #hackathon with @yamcatzenelson, @AssemblyAI https://t.co/XWcJPsrrDr","username":"adamcohenhillel","name":"Adam Cohen Hillel"},"retweet_count":0,"like_count":1,"expanded_url":{},"video_url":null,"belowTheFold":true}'
+      >
+        <a
+          class="tweet-link-top"
+          href="https://twitter.com/adamcohenhillel/status/1602303872701186051?s=20&amp;t=MU193AfQM44SPmSf_woJ9w"
+          target="_blank"
+          ><div class="tweet-header">
+            <img
+              class="tweet-header-avatar"
+              src="https://substackcdn.com/image/twitter_name/w_96/adamcohenhillel.jpg"
+              alt="Twitter avatar for @adamcohenhillel"
+              loading="lazy"
+            />
+            <div class="tweet-header-text">
+              <span class="tweet-author-name">Adam Cohen Hillel </span
+              ><span class="tweet-author-handle">@adamcohenhillel</span>
+            </div>
+          </div>
+          <div class="tweet-text">
+            I actually didn’t notice it myself, but a friend pointed out that
+            AIwaska also created two futuristic creatures/ aliens next to the
+            teleport! 🫢
+          </div>
+          <div class="tweet-photos-container one">
+            <div class="tweet-photo-wrapper">
+              <picture
+                ><source
+                  type="image/webp"
+                  srcset="
+                    https://substackcdn.com/image/fetch/w_600,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fpbs.substack.com%2Fmedia%2FFjyG4REWYAAYgmH.jpg
+                  " />
+                <img
+                  class="tweet-photo"
+                  src="https://pbs.substack.com/media/FjyG4REWYAAYgmH.jpg"
+                  alt="Image"
+                  loading="lazy"
+              /></picture>
+            </div>
+          </div>
+          <div class="quote-tweet">
+            <div class="quote-tweet-header">
+              <img
+                class="quote-tweet-header-avatar"
+                src="https://substackcdn.com/image/twitter_name/w_40/adamcohenhillel.jpg"
+                alt="Twitter avatar for @adamcohenhillel"
+                loading="lazy"
+              />
+              <div class="quote-tweet-header-text">
+                <span class="quote-tweet-name">Adam Cohen Hillel </span
+                ><span class="quote-tweet-username">@adamcohenhillel</span>
+              </div>
+            </div>
+            AIwaska - A simple shooting game generated by a customized user
+            prompt "Middle Ages town hall, with a psychedelic teleport door that
+            opens up to the future" Made it 3 days! It was a fun #hackathon with
+            @yamcatzenelson, @AssemblyAI https://t.co/XWcJPsrrDr
+          </div></a
+        ><a
+          class="tweet-link-bottom"
+          href="https://twitter.com/adamcohenhillel/status/1602303872701186051?s=20&amp;t=MU193AfQM44SPmSf_woJ9w"
+          target="_blank"
+          ><div class="tweet-footer">
+            <span class="tweet-date">2:06 PM ∙ Dec 12, 2022</span>
+          </div></a
+        >
+      </div>
+      <h4>
+        <strong><br />Future/Missing Steps and </strong>Final Thoughts<strong
+          >:</strong
+        >
+      </h4>
+      <p>
+        It's important to note that although the current game may not meet the
+        suggested future, it was only developed in three days to showcase the
+        potential of using Generative-AI in the gaming industry. The game still
+        has many missing parts:
+      </p>
+      <ol>
+        <li>
+          <p>
+            It is not truly AI-oriented, and other than the world’s setting -
+            everything is “fixed”.
+          </p>
+        </li>
+        <li><p>It is slow to generate the images.</p></li>
+        <li><p>No Depth</p></li>
+        <li><p>No soundtrack</p></li>
+        <li><p>No "goal” for the game</p></li>
+        <li><p>More ;)</p></li>
+      </ol>
+      <p>
+        Despite this, all the necessary components for creating such a
+        revolutionary gaming experience already exist, including AI models that
+        generate 3D objects, soundtracks, in-game conversations, plotlines, and
+        tasks. The challenge is to bring them all together in a cohesive manner.
+        However, with the right approach, it is undoubtedly achievable:
+      </p>
+      <p>
+        To build the future of AIwaska, we will start by creating a core textual
+        engine, which we can call the <strong>GPT-3 Plotline</strong>. This
+        engine will be built on top of GPT-3 and coordinate all the other models
+        needed for a game. It will be the only part that is guided by user
+        prompts. Then it will generate instructions for the components that
+        should be included in the game, like <strong>visual settings</strong>,
+        <strong>3D</strong> <strong>objects</strong>,
+        <strong>soundtrack</strong>, <strong>conversations, </strong>etc. It
+        will serve as the foundation for the game's construction. (We had
+        already experimented with this approach in AIwaska when we used GPT-3 to
+        suggest additional elements that would fit the user prompt).
+      </p>
+      <p>Cool projects to keep an eye on in that regard:</p>
+      <ol>
+        <li>
+          <p>Sound:</p>
+          <ol>
+            <li><p>https://www.riffusion.com/about</p></li>
+            <li><p>https://www.harmonai.org/</p></li>
+          </ol>
+        </li>
+        <li>
+          <p>3D objects:</p>
+          <ol>
+            <li><p>https://captures.lumalabs.ai/imagine</p></li>
+          </ol>
+        </li>
+        <li>
+          <p>
+            Stable Dissufuon DepthMap
+            https://github.com/thygate/stable-diffusion-webui-depthmap-script
+          </p>
+        </li>
+      </ol>
+      <p>
+        Also, it’d probably be better to develop a game like that on top of
+        Stable Diffusion rather than DALL-E, as it has a better community and
+        projects to support future development, you can deploy and scale it
+        yourself, and also, from Stable Diffusion version 2.1 - we should be
+        able to produce 13 FPS (Frames Per Second) which is not too far from
+        actual eyesight and the standards of the gaming industry (30 to 60 fps)!
+      </p>
+      <p></p>
+      <p>
+        Lastly, I will note again that this technology has the potential to
+        completely change the gaming industry by offering new and exciting
+        opportunities for both developers and players. While it will still
+        require time, money, and effort to create games, it definitely can
+        reduce it and the enabling experiences that weren’t possible before!
+      </p>
+      <div><hr /></div>
+      <p>
+        Here, the article ends and shifts from its specific focus to a more
+        broad, philosophical writing.
+      </p>
+      <h4>
+        <strong>[Extra] The Far Future and the Importance of Gaming</strong>
+      </h4>
+      <p>
+        I want to finish with a thought about the importance of the gaming
+        industry moving forward to a future with AI. The emerging advancement of
+        AI make it hard to argue against its implication on the workforce and
+        the need for human labour. Whether you’re pessimistic or optimistic,
+        think all jobs will be replaced, or that we will find new occupations,
+        you can’t deny that there is a change on the way.<br /><br />I’m trying
+        to be optimistic, and to explore these possibilities - so I will leave
+        you with a quote from the book “<em>Life 3.0</em>” by
+        <em>Max Tegmark</em>
+      </p>
+      <blockquote>
+        <p>
+          “[P]erhaps those who obsess about jobs today are being too
+          narrow-minded: we want jobs because they can provide us with income
+          and purpose, but given the opulence of resources produced by machines,
+          it should be possible to find alternative ways to provide both the
+          income and the purpose
+          <em>without</em> jobs.” - <em>Life 3.0, Max Tegmark</em>
+        </p>
+      </blockquote>
+      <p>Can gaming help? I think so.</p>
+      <div><hr /></div>
+      <div><hr /></div>
+      <div><hr /></div>
+      <p>
+        Thank you for reading. If you liked my content, don’t hesitate to reach
+        out. I’d love to talk with more people and discuss everything: tech,
+        philosophy, AI, ideas, Lex Fridman, startups, software, science,
+        whatever!
+      </p>
+      <p>
+        <strong>AIwaska Github:</strong>
+        https://github.com/adamcohenhillel/aiwaska<br /><strong
+          >Twitter:</strong
+        >
+        https://twitter.com/adamcohenhillel<br /><strong>LinkedIn:</strong>
+        https://www.linkedin.com/in/adamcohenhillel<br /><strong>Email:</strong>
+        adamcohenhillel@gmail.com<br /><br />Adam.
+      </p>
+      <div
+        class="subscription-widget-wrap-editor"
+        data-attrs='{"url":"https://essays.adamcohenhillel.com/subscribe?","text":"Subscribe","language":"en"}'
+        data-component-name="SubscribeWidgetToDOM"
+      >
+        <div class="subscription-widget show-subscribe">
+          <div class="preamble">
+            <p class="cta-caption">
+              Thanks for reading Adam’s Notes! Subscribe for free to receive new
+              posts and support my work.
+            </p>
+          </div>
+          <form class="subscription-widget-subscribe">
+            <input
+              type="email"
+              class="email-input"
+              name="email"
+              placeholder="Type your email…"
+              tabindex="-1"
+            /><input type="submit" class="button primary" value="Subscribe" />
+            <div class="fake-input-wrapper">
+              <div class="fake-input"></div>
+              <div class="fake-button"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
