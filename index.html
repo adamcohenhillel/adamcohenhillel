@@ -5,6 +5,9 @@
     <meta name="twitter:site" content="@adamcohenhillel" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href="http://adamcohenhillel.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Phoenician&display=swap" rel="stylesheet">
     <style>
       body {
         line-height: 1.4;
@@ -12,6 +15,7 @@
         padding: 0 10px;
         margin: 50px auto;
         max-width: 650px;
+        font-family: 'Inter', sans-serif;
       }
 
       #maincontent {
@@ -38,6 +42,29 @@
         padding: 10px;
         margin-top: 20px;
       }
+
+      .header-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links {
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 600px) {
+        .header-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .header-container h2 {
+          margin-bottom: 10px;
+        }
+      }
     </style>
 
     <title>Adam Cohen Hillel</title>
@@ -45,38 +72,48 @@
 
   <body>
     <div id="maincontent" style="margin-top: 70px">
-      <h2>Hey, I'm Adam Cohen Hillel</h2>
-      <a href="https://x.com/adamcohenhillel" style="font-size: 0.9em;">X</a>,
-      <a href="https://www.linkedin.com/in/adamcohenhillel/" style="font-size: 0.9em;">LinkedIn</a>,
-      <a href="https://github.com/adamcohenhillel" style="font-size: 0.9em;">Github</a>,
-      <a href="https://adamcohenhillel.substack.com/" style="font-size: 0.9em;">Substack</a>
-
+      <div class="header-container">
+        <h2>Hey, I'm Adam Cohen Hillel</h2>
+        <div class="social-links">
+          <a href="https://x.com/adamcohenhillel">X</a>,
+          <a href="https://www.linkedin.com/in/adamcohenhillel/">LinkedIn</a>,
+          <a href="https://github.com/adamcohenhillel">Github</a>,
+          <a href="https://adamcohenhillel.substack.com/">Substack</a>
+        </div>
+      </div>
+      In short, <span style="font-style: italic;">I'm a builder, since forever. I built apps and games that were used by millions of people. I founded and helped build a few companies. I built many many many products - from games, to cybersecurity, hardware, and AI. I also like to read and write a lot (see below).</span>
       <br />
       <br />
-      
-      I'm a builder, since forever.
-      I built apps and games that were used by millions of people.
-      I founded companies and built 100+ products, some succeeded, some didn't. My skillset and interests are very diverse, from games and apps to cybersecurity, hardware, and AI. I also like to read and write a lot (see below).
 
+      <h3>A more detailed story: (<a href="#projects">skip</a>)</h3>
       <ul>
-        <li>I started building websites when I was 8, but no one took me seriously, so I built my own websites (and eventually apps) for myself, which then led to building one of the first and biggest mobile games company in Israel, <a href="https://play.google.com/store/apps/developer?id=Gruchka&hl=en_US">Gruchka Games</a> (<a href="https://apps.apple.com/us/developer/abraham-cohen-hillel/id1124164854">iOS</a>) - with more than 1.5M downloads and 150k MAU.</li>
-        <li>I then joined the one of the top cyber units of the IDF (unit 81), as a system, then software and security engineer. Which forged me to be able to set up a whole server room from scratch and obvs to write good code! (you can read about funny shitty code I wrote as a kid <a href="https://x.com/adamcohenhillel/status/1625891547412586497">here</a>)</li>
-        <li>After my military service I moved to London and joined <a href="https://www.cadosecurity.com/">Cado Security</a> as its first employee and founding engineer, and grew with the company through series Seed, A, and B. Led the software engineering team of ~6 engineers.</li>
-        <li>Founded Deepen, an AI companion app that became the #1 Product of the Day on Product Hunt, and was downloaded 20k times. Couldn't grow ir further though, and broke up with co-founder.</li>
-        <li>Then I moved to San Francisco, and built a bunch of AI x Hardware products, including <a href="https://www.privsov.com/products/ark">The Ark</a> and <a href="https://github.com/adamcohenhillel/ADeus">Adeus</a>, the first open source AI Wearable device (<a href="https://x.com/adamcohenhillel/status/1753435031102476701">announcement</a>), which led to the <a href="https://www.omi.me/">Based Hardware Omi / Friend Company</a>, to which I'm an advisor board member.</li>
+        <li>Started coding when I was 8, then around 12 I started walking around my home town to try and convince small businesses I should build them websites - but no one took me seriously, so I decided to build my own stuff.</li>  
+        <li>This led to me founding one of Israel's first major mobile games companies, <a href="https://play.google.com/store/apps/developer?id=Gruchka&hl=en_US" target="_blank">Gruchka Games</a> (<a href="https://apps.apple.com/us/developer/abraham-cohen-hillel/id1124164854" target="_blank">iOS</a>) - reaching 1.5M downloads and 150k MAU at its peak.</li>
+        <li>I then joined the IDF and served in one of the elite cybersecurity units as a system and security engineer. There - I basically learned to set up entire server rooms from scratch and write proper code (check out a funny story of my early coding days <a href="https://x.com/adamcohenhillel/status/1625891547412586497" target="_blank">here</a>)</li>
+        <li>After my service, I moved to London, UK, and joined <a href="https://www.cadosecurity.com/" target="_blank">Cado Security</a> as the first founding member. I grew with the company from seed to series B, and built their entire engineering team. The company later got acquired by <a href="https://www.darktrace.com/blog/fusing-vulnerability-and-threat-data-enhancing-the-depth-of-attack-analysis" target="_blank">Darktrace for $100M+.</a></li>
+        <li>I founded Deepen, an AI companion some time before chatgpt came out. We got around ~20k downloads in ~4 months, but I couldn't scale it further, and had a co-founder breakup. But I learned a ton!</li>
+        <li>Moving to San Francisco, I built a bunch of AI x Hardware products at <a href="https://f.inc/" target="_blank">Founders, Inc.</a> including <a href="https://www.privsov.com/products/ark" target="_blank">The Ark</a> and <a href="https://github.com/adamcohenhillel/ADeus" target="_blank">Adeus</a>, the first open source AI Wearable (<a href="https://x.com/adamcohenhillel/status/1753435031102476701" target="_blank">announcement</a>), which then became <a href="https://www.omi.me/" target="_blank">Based Hardware Omi / Friend Company</a>, to which I'm an founding member & advisor.</li>
+          <li>Pivoting back to cyber, I built <a href="https://sightbear.com" target="_blank">SightBear</a>, an offensive AI Security Engineer that autonomously finds and exploits web3 vulnerabilities - but quickly decided it's not what I want to do with my life.</li>
       </ul>
       </p>
 
-      <p>
-        Today I'm building <a href="https://sightbear.com">SightBear</a>, an offensive AI Security Engineer that autonomously finds and exploits web + web3 vulnerabilities.
-      </p>
+      <p>In between all of the above, I built many other things, some of which are listed below.</p>
 
-      <h3>Some cool stuff I did before:</h3>
+      <h3 id="projects">Some cool stuff I did before:</h3>
       <ul>
+        <li>
+          <a href="https://www.hijackedai.com/">HijackedAI</a>: Create an AI agent backed by real money where players try to convince it to release funds
+        </li>
+        <li>
+          <a href="https://3dgen.adamcohenhillel.com/">3DGen</a>: Instantly create 3D models from text descriptions. Perfect for Three.js, games, and more - just describe what you need.
+        </li>
+        <li>
+          <a href="https://www.wielder.ai/?tab=popular&page=1">Wielder</a>: Create and share games with friends
+        </li>
         <li><a href="https://github.com/adamcohenhillel/ADeus">Adeus</a>: the first open source AI Wearable device (<a href="https://x.com/adamcohenhillel/status/1753435031102476701">announcement</a>), which led to the <a href="https://www.omi.me/"></a>Based Hardware Omi / Friend Company</a>, to which I'm an advisor board member.</li>
         <li><a href="https://www.privsov.com/products/ark">The Ark</a>: a rugged, offline, off-grid, AI device.</li>
-
         <li><a href="https://www.vulereai.com/">VuleRe</a>: AI Agent for finding vulnerabilities in smart contracts deployed in ETH</li>
+        <li><a href="https://sightbear.com">SightBear</a>, an offensive AI Security Engineer that autonomously finds and exploits web + web3 vulnerabilities.</li>
         <li><a href="https://github.com/cado-security/masked-ai">Masked-AI</a>: A Python SDK and CLI wrapper for more secure usage of public LLM APIs</li>
         <li><a href="https://github.com/cado-security/varc">varc (Volatile Artifact Collector)</a>: A tool for collecting snapshots of volatile data from systems</li>
         <li>
@@ -92,7 +129,9 @@
             <a href="https://x.com/adamcohenhillel/status/1823826957790011540">Liars.AI</a>: AI app for detecting lies in video conversations
             (<a href="https://www.liars.ai/">Website</a>)
           </li>
-        
+        <li>
+          <a href="https://www.drawith.com/">Drawith</a>: Draw something and let AI guess what you draw
+        </li>
         <li>
           <a href="https://github.com/adamcohenhillel/AIwaska">AIwaska</a>: A concept game showcasing personalized, AI-generated immersive worlds
           (<a href="https://x.com/adamcohenhillel/status/1602044805051256833">GitHub</a>)
@@ -102,6 +141,12 @@
         </li>
         <li>
             <a href="https://x.com/adamcohenhillel/status/1644836492294905856">AgentX</a>: Coding Agent that follows the Test Driven Development (TDD) methodology
+        </li>
+        <li>
+          <a href="https://x.com/adamch_bot">Adam2.0 (aka adam the bot)</a>: A fully automated bot based on my twitter data, with its own inner world where it can access the internet, play games, write & read posts here, etc.
+        </li>
+        <li>
+          <a href="https://www.dim42.com/">Dim42</a>: open source multiverse protocol - embed portals in your game to connect to other games and worlds
         </li>
         <li>
           <a href="https://x.com/adamcohenhillel/status/1647006066092261377">LLMitlessAPI</a>: one single HTTP endpoint that triggers an AI agent.
