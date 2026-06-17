@@ -1,0 +1,8 @@
+.DS_Store
+
+# Local database stores
+*.db
+*.sqlite
+*.sqlite3
+db/
+db-store/

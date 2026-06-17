@@ -1,0 +1,66 @@
+body {
+  line-height: 1.4;
+  font-size: 16px;
+  padding: 0 10px;
+  margin: 50px auto;
+  max-width: 650px;
+  font-family: "Inter", sans-serif;
+}
+
+#maincontent {
+  max-width: 42em;
+  margin: 15px auto;
+}
+
+.header-container {
+  margin-bottom: 28px;
+}
+
+.header-container h2 {
+  margin: 0;
+}
+
+.site-title {
+  color: #000;
+  font-weight: 700;
+}
+
+.page-title {
+  color: #666;
+  font-weight: 400;
+}
+
+.site-nav {
+  font-size: 0.9em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.book-list li {
+  margin: 6px 0;
+}
+
+.essay-section {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .header-container h2 {
+    margin-bottom: 10px;
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: 6px;
+    white-space: normal;
+  }
+}
