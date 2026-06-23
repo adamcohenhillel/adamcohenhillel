@@ -15,51 +15,59 @@
   </head>
 
   <body>
-    <div id="maincontent" style="margin-top: 70px">
+    <div id="maincontent">
       <div class="header-container">
-        <h2><span class="site-title">Adam Cohen Hillel |</span> <span class="page-title">Essays</span></h2>
+        <div class="title-row">
+          <h2><span class="site-title">Adam Cohen Hillel</span> <span class="page-title">— Essays</span></h2>
+          <div class="social-icons">
+            <a href="https://x.com/adamcohenhillel" aria-label="X" title="X">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/adamcohenhillel/" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/adamcohenhillel" aria-label="Github" title="Github">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="https://adamcohenhillel.substack.com/" aria-label="Substack" title="Substack">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            </a>
+          </div>
+        </div>
         <div class="site-nav">
-          <a href="../index.html">[Home]</a>
-          <a href="../about.html">[About]</a>
-          <a href="../past-projects.html">[Past Projects]</a>
-          <a href="../books.html">[Books]</a>
-          <a href="./">[Essays]</a>
-          <a href="../press.html">[Press]</a>
-          <a href="https://x.com/adamcohenhillel">[X]</a>
-          <a href="https://www.linkedin.com/in/adamcohenhillel/">[LinkedIn]</a>
-          <a href="https://github.com/adamcohenhillel">[Github]</a>
-          <a href="https://adamcohenhillel.substack.com/">[Substack]</a>
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../past-projects.html">Past Projects</a>
+          <a href="../books.html">Books</a>
+          <a href="./" aria-current="page">Essays</a>
+          <a href="../press.html">Press</a>
         </div>
       </div>
 
       <p>I write essays on <a href="https://adamcohenhillel.substack.com/">Substack</a>. You can also find a backup of them here.</p>
 
-      <div class="essay-section">
-        <div id="substack-feed-embed"></div>
-
-        <script>
-          window.SubstackFeedWidget = {
-            substackUrl: "essays.adamcohenhillel.com",
-            posts: 12,
-            layout: "right",
-            hidden: ["image", "author", "premium", "comments", "reactions"],
-          };
-        </script>
-        <script src="https://substackapi.com/embeds/feed.js" async></script>
-      </div>
-
       <ul>
-        <li><a href="147797435.loneliness.html">Loneliness</a></li>
-        <li><a href="147653539.big-brother-big-tech-1984.html">Big Brother, Big Tech, 1984</a></li>
-        <li><a href="138754568.proof-of-personhood-techs-triumph.html">Proof-of-Personhood: Tech's Triumph Over State Monopoly</a></li>
-        <li><a href="138223973.countering-the-coming-wave-by-mustafa.html">Countering "The Coming Wave" by Mustafa Suleyman: The Case for Open Source AI</a></li>
-        <li><a href="114179012.experiments-with-autonomous-gpt-agents.html">Experiments with Autonomous GPT Agents</a></li>
-        <li><a href="110230725.introducing-masked-ai-an-open-source.html">Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely</a></li>
-        <li><a href="102734179.new-layer-of-abstraction-not-the.html">New Layer of Abstraction, Not the End of Software Engineering</a></li>
-        <li><a href="100437081.interactive-q-and-a-incident-response.html">Interactive Q&amp;A Incident Response with Cado Platform + GPT-3</a></li>
-        <li><a href="96957007.deepen-vision-and-roadmap.html">Deepen: Vision and Roadmap</a></li>
-        <li><a href="90245599.how-generative-ai-will-change-the.html">How Generative-AI Will Change the Gaming Industry, A Working Example</a></li>
-        <li><a href="86465292.the-era-of-ai-native-products-in.html">The Era of AI-Native Products in Tech Consumption</a></li>
+        <li><a href="100x-multipliers-and-the-return-of.html">100x Multipliers &amp; the Return of Guilds</a></li>
+        <li><a href="isravalley.html">IsraValley</a></li>
+        <li><a href="activism-and-activists.html">Activism and Activists</a></li>
+        <li><a href="secondly-manifesto.html">Secondly Manifesto</a></li>
+        <li><a href="how-tech-redefines-the-social-contract.html">How Tech Redefines the Social Contract</a></li>
+        <li><a href="the-revival-of-the-polymaths.html">The Revival of the Polymaths</a></li>
+        <li><a href="waves-of-greatness.html">Waves of Greatness</a></li>
+        <li><a href="lost-again.html">Lost Again</a></li>
+        <li><a href="the-hacker-house-show.html">The Hacker House Show</a></li>
+        <li><a href="the-future-of-democracy-is-direct.html">The Future of Democracy is Direct, Exercised through Open Source Software Running on a Blockchain</a></li>
+        <li><a href="loneliness.html">Loneliness</a></li>
+        <li><a href="big-brother-big-tech-1984.html">Big Brother, Big Tech, 1984</a></li>
+        <li><a href="proof-of-personhood-techs-triumph.html">Proof-of-Personhood: Tech's Triumph Over State Monopoly</a></li>
+        <li><a href="countering-the-coming-wave-by-mustafa.html">Countering "The Coming Wave" by Mustafa Suleyman: The Case for Open Source AI</a></li>
+        <li><a href="experiments-with-autonomous-gpt-agents.html">Experiments with Autonomous GPT Agents</a></li>
+        <li><a href="introducing-masked-ai-an-open-source.html">Introducing Masked-AI, An Open Source library that enables the usage of LLM APIs more securely</a></li>
+        <li><a href="new-layer-of-abstraction-not-the.html">New Layer of Abstraction, Not the End of Software Engineering</a></li>
+        <li><a href="interactive-q-and-a-incident-response.html">Interactive Q&amp;A Incident Response with Cado Platform + GPT-3</a></li>
+        <li><a href="deepen-vision-and-roadmap.html">Deepen: Vision and Roadmap</a></li>
+        <li><a href="how-generative-ai-will-change-the.html">How Generative-AI Will Change the Gaming Industry, A Working Example</a></li>
+        <li><a href="the-era-of-ai-native-products-in.html">The Era of AI-Native Products in Tech Consumption</a></li>
       </ul>
     </div>
   </body>

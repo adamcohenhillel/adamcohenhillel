@@ -1,66 +1,257 @@
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  line-height: 1.4;
-  font-size: 16px;
-  padding: 0 10px;
-  margin: 50px auto;
-  max-width: 650px;
+  line-height: 1.6;
+  font-size: 15px;
+  padding: 0 24px;
+  margin: 80px auto;
+  max-width: 620px;
   font-family: "Inter", sans-serif;
+  color: #111;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #maincontent {
-  max-width: 42em;
-  margin: 15px auto;
+  margin: 0 auto;
 }
 
-.header-container {
-  margin-bottom: 28px;
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.25);
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 120ms ease;
 }
 
-.header-container h2 {
+a:hover {
+  text-decoration-color: rgba(0, 0, 0, 0.9);
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+h2,
+h3 {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+h2 {
+  font-size: 15px;
   margin: 0;
 }
 
+h3 {
+  font-size: 15px;
+  margin: 2em 0 0.5em;
+  color: #111;
+}
+
+ul {
+  padding-left: 1.2em;
+  list-style: disc;
+  margin: 0 0 1.1em;
+}
+
+ul li {
+  margin: 0.35em 0;
+}
+
+ul li::marker {
+  color: #bbb;
+}
+
+.header-container {
+  margin-bottom: 32px;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.social-icons a {
+  display: inline-flex;
+  color: #111;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 120ms ease;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+}
+
+.social-icons svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: currentColor;
+}
+
 .site-title {
-  color: #000;
-  font-weight: 700;
+  color: #111;
+  font-weight: 500;
 }
 
 .page-title {
-  color: #666;
+  color: #999;
   font-weight: 400;
 }
 
 .site-nav {
-  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
 }
 
-.site-nav {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  overflow-x: auto;
-  white-space: nowrap;
+.site-nav a {
+  color: #666;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: #111;
+}
+
+.site-nav a[aria-current="page"] {
+  color: #111;
+  font-weight: 600;
 }
 
 .book-list li {
-  margin: 6px 0;
+  margin: 0.3em 0;
+  color: #333;
+}
+
+.essay h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.3em;
+  line-height: 1.25;
+}
+
+.essay-subtitle {
+  font-size: 16px;
+  color: #555;
+  font-weight: 400;
+  margin: 0 0 0.6em;
+  line-height: 1.4;
+}
+
+.essay-meta {
+  color: #999;
+  font-size: 14px;
+  margin: 0 0 1.8em;
+}
+
+.essay-body p {
+  margin: 0 0 1.1em;
+}
+
+.essay-body figure {
+  margin: 1.6em 0;
+}
+
+.essay-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.essay-body figcaption {
+  font-size: 13px;
+  color: #999;
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+.essay-body blockquote {
+  margin: 1.2em 0;
+  padding-left: 1em;
+  border-left: 2px solid #e5e5e5;
+  color: #555;
+}
+
+.essay-body h2,
+.essay-body h3,
+.essay-body h4 {
+  margin: 1.6em 0 0.5em;
+  font-weight: 600;
+}
+
+.essay-body h2 {
+  font-size: 18px;
+}
+
+.essay-body h3 {
+  font-size: 16px;
+}
+
+.essay-body code {
+  background: #f5f5f5;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.essay-body pre {
+  background: #f7f7f7;
+  padding: 12px 14px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.essay-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.essay-body hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 2em 0;
 }
 
 .essay-section {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-top: 20px;
+  border: none;
+  padding: 0;
+  margin-top: 1.5em;
 }
 
 @media (max-width: 600px) {
-  .header-container h2 {
-    margin-bottom: 10px;
+  body {
+    margin: 48px auto;
+    padding: 0 20px;
+  }
+
+  .header-container {
+    margin-bottom: 24px;
   }
 
   .site-nav {
-    flex-wrap: wrap;
-    overflow-x: visible;
-    row-gap: 6px;
-    white-space: normal;
+    row-gap: 4px;
   }
 }
